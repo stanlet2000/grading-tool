@@ -36,10 +36,15 @@ def search_student(df, keyword):
             f"{row['學號']} - {row['姓名']}"
             for _, row in matches.iterrows()
         ]
+        choices.append("🔙 重新輸入學號")
+
         selected = inquirer.select(
             message="🔍 找到多個符合的學生，請選擇：",
             choices=choices,
         ).execute()
+
+        if selected == "🔙 重新輸入學號":
+            return None
 
         selected_id = selected.split(" - ")[0]
         return matches[matches['學號'] == selected_id].iloc[0]

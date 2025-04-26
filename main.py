@@ -19,6 +19,7 @@ def main():
         if student_keyword.lower() == 'exit':
             break
 
+
         result = search_student(df, student_keyword)
 
         if result is None:
