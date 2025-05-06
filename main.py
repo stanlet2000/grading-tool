@@ -25,9 +25,9 @@ def main():
         if result is None:
             continue
 
-        student_id = result['學號']
-        name = result['姓名']
-        grade = result['成績']
+        student_id = result[0]
+        name = result[1]
+        grade = result[2]
 
         print(f"學號：{student_id}")
         print(f"姓名：{name}")

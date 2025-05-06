@@ -3,7 +3,9 @@
 
 from InquirerPy import inquirer
 import os
-from configure import available_types
+from config_handler import load_config, save_config
+
+available_types = load_config()["available_types"]
 
 def list_dirs(base_path):
     dirs = []

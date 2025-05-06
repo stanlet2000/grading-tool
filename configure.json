@@ -1,0 +1,12 @@
+{
+    "available_types": [".csv", ".txt"],
+    "columns_mapping": {
+      "studentid": "學號",
+      "name": "姓名",
+      "grade": "Mid (實得分數)"
+    },
+    "default_delimiter": ",",
+    "delimiter_option": [",", ";", "\t"],
+    "encoding_option": ["utf-8", "big5" ]
+  }
+  
