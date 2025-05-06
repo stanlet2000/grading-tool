@@ -5,7 +5,8 @@
       "name": "姓名",
       "grade": "成績"
     },
-    "default_delimiter": ",",
+    "load_delimiter": ";",
+    "save_delimiter": ";",
     "delimiter_option": [",", ";", "\t"],
     "encoding_option": ["utf-8", "big5" ]
   }

@@ -6,7 +6,7 @@ config = load_config()
 col_elements = config["columns_mapping"]
 
 def load_csv(path):
-    delimiter = load_config()["default_delimiter"]
+    delimiter = load_config()["load_delimiter"]
     return pd.read_csv(path, delimiter=delimiter, encoding="utf-8")
 
 def find_student(df, student_id):
@@ -17,7 +17,7 @@ def update_grade(df, student_id, new_grade):
     return df
 
 def save_csv(df, path):
-    delimiter = load_config()["default_delimiter"]
+    delimiter = load_config()["save_delimiter"]
     df.to_csv(path, index=False, sep=delimiter)
 
 def is_empty_grade(grade):
