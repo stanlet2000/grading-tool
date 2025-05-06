@@ -35,7 +35,9 @@ def search_student(df, keyword):
         return None
 
     if len(matches) == 1:
-        return matches.iloc[0]
+        student = matches.iloc[0]
+        print(f"找到符合的學生：{student[col_elements['studentid']]} - {student[col_elements['name']]}")
+        return (student[col_elements["studentid"]], student[col_elements["name"]], student[col_elements["grade"]])
 
     else:
         choices = [
@@ -54,7 +56,7 @@ def search_student(df, keyword):
 
         selected_id = selected.split(" - ")[0]
         student = matches[matches[col_elements["studentid"]] == selected_id].iloc[0]
-        return student[col_elements["studentid"]], student[col_elements["name"]], student[col_elements["grade"]]
+        return (student[col_elements["studentid"]], student[col_elements["name"]], student[col_elements["grade"]])
 
 def check_required_columns(df):
     """檢查 CSV 是否包含所有 mapping 裡定義的外部欄位"""
@@ -63,7 +65,7 @@ def check_required_columns(df):
     df_columns = [col.strip() for col in df.columns]
 
     missing = []
-    for external_col in columns_mapping.keys():
+    for external_col in columns_mapping.values():
         if external_col not in df_columns:
             missing.append(external_col)
 
