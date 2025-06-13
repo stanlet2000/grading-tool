@@ -1,5 +1,5 @@
 from file_operation import select_file_with_fallback, save_as_new_file
-from backend import load_csv, find_student, update_grade, save_csv, is_empty_grade, search_student, check_required_columns
+from backend import load_csv, find_student, update_grade, save_csv, is_empty_grade, search_student, check_required_columns, drop_unused_columns
 import sys
 import os
 
@@ -10,10 +10,11 @@ def main():
         sys.exit(1)
 
     df = load_csv(file)
+    df = drop_unused_columns(df)
     if not check_required_columns(df):
         print("❌ CSV 檔案缺少必要的欄位，請檢查檔案格式。")
         sys.exit(1)
-        
+    
     print(f"\n=== 成績登記系統 ===\n載入檔案：{file}\n")
 
     modified = False

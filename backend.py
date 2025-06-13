@@ -18,7 +18,7 @@ def update_grade(df, student_id, new_grade):
 
 def save_csv(df, path):
     delimiter = load_config()["save_delimiter"]
-    df.to_csv(path, index=False, sep=delimiter)
+    df.to_csv(path, index=False, sep=delimiter, encoding="utf-8")
 
 def is_empty_grade(grade):
     return pd.isna(grade)
@@ -73,3 +73,27 @@ def check_required_columns(df):
         print(f"❌ 檔案缺少必要欄位：{', '.join(missing)}")
         return False
     return True
+
+
+def drop_unused_columns(df):
+    current_columns = df.columns.tolist()
+
+    selected = inquirer.checkbox(
+        message="🧹 請選擇要保留的欄位：",
+        choices=current_columns,
+        instruction="空白鍵選取、上下移動、Enter 確認"
+    ).execute()
+
+    if not selected:
+        print("⚠️ 你沒有選任何欄位，將保留全部欄位。")
+        return df
+
+    columns_to_drop = [col for col in current_columns if col not in selected]
+
+    if columns_to_drop:
+        print(f"🧹 將刪除以下欄位：{', '.join(columns_to_drop)}")
+        df = df.drop(columns=columns_to_drop)
+    else:
+        print("✅ 所有欄位都保留。")
+
+    return df
